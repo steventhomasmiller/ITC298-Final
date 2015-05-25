@@ -35,7 +35,7 @@ server.route({
 		"utf8", function(err, data) {
 		reply.view("example", {
 			title: "Example",
-			classes: JSON.parse(data)
+			example: JSON.parse(data)
 		});	
 	});
   }
