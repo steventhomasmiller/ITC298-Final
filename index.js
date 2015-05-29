@@ -1,10 +1,23 @@
 var hapi = require("hapi");
 var server = new hapi.Server();
 var fs = require("fs");
+var sqlite = require("sqlite3");
+//var db = require("/.db");
 
 server.connection({ port: 8000 });
 
-server.start();
+var db = new sqlite.Database("auth.db", function() {
+  //table has two columns - USERNAME & SESSION
+  db.run("CREATE TABLE IF NOT EXISTS auth (username, session)",
+    function() {
+      console.log("Starting server.");
+      server.start();
+    });
+});
+
+
+
+//server.start();
 
 server.views({
   path: "templates",
