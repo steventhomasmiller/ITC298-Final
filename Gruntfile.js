@@ -32,23 +32,34 @@ module.exports = function(grunt){
 			}
 		},
 		watch: {
-			prefix: {
-				files: "src/css/**/*.css",
+			less: {
+				files: "src/css/**/*.less",
+				tasks: ["less"]
+			},
+			html: {
+				files: "./**/*.html",
 				tasks: ["autoprefixer"]
 			},
 			options: {
 				livereload: true
 			},
-			template: {
-				files: "**/*.html",
-				tasks: ["hello"]
+			css: {
+				files: "src/css/**.css",
+				tasks: ["autoprefixer"]
 			}
 		},
+		less: {
+			dev: {
+				files: {
+					"src/css/style.css": "src/styles/main.less"
+				}
+			}
+		}
 		autoprefixer: {
 			dev: {
 				expand: true,
 				flatten: true,
-				src: "src/css/**/*.css",
+				src: "src/css/style.css",
 				dest: "build/css/"
 			}
 		}
