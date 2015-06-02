@@ -1,0 +1,15 @@
+* Load the database with sample posts using INSERT statements.
+* Create an index view, where you list the titles of all the posts in the DB in reverse chron order.
+* Add links to the index view, such that you can find an individual post from them.
+* Create an individual post view, which shows the title plus all content for the post.
+* Create an "edit" view, which lets you load a single post into the form and edit it.
+* Add the ability to create new posts, instead of just editing existing posts.
+
+More Notes
+* Add dates
+
+loginPostHandler = 
+Create post, route form to handler. Handler would insert into new blog object, or SQL insert stat
+
+blog
+req.payload
