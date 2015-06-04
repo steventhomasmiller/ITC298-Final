@@ -13,3 +13,20 @@ Create post, route form to handler. Handler would insert into new blog object, o
 
 blog
 req.payload
+id = primary key
+
+INSERT INTO POST ()
+VALUES
+Post to create post
+Handler would take info by looking at the req.payload
+
+console.log(req.payload)
+instead of username, postname
+who's posting = check id using session cookie 
+Select * from 
+
+HANDLER = where to put insert statement
+db.prepare in the handler
+
+reminder = blogpost
+Reminder = Blogpost

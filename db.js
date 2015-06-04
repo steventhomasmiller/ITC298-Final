@@ -1,17 +1,17 @@
-//db.js
+//database.js
 
-var async = require("async");
 var sqlite = require("sqlite3");
-var db;
 
-var blogpost = new sqlite.Database("blogpost.db", function() {
-	blogpost.run("CREATE TABLE IF NOT EXISTS blogpost (id, title, content, author, category, tags, images, meta);");
-	console.log(blogpost);
+var facade = {
+	connection: null,
+	init: function(callback) {
+		var db = new sqlite.Database("blogpost.db"); //creating db
+		facade.connection = db; // once connection is made, they can use this
+		db.run("CREATE TABLE IF NOT EXISTS blogpost (id, title, date, content, author, category, tags, images, meta)", function() {
+			callback(); //function passed in index.js; runs when ready, transfers control
+		});
+		
+	}
+};
 
-});
-
-db.get("SELECT * FROM blogpost", function(err, result){
-	console.log("result");
-});
-
-module.exports = blogpost;
+module.exports = facade; //what we're exporting, but not funcitonally anything. Just a grab bag.

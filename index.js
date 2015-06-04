@@ -1,55 +1,37 @@
 var hapi = require("hapi");
 var server = new hapi.Server();
-var fs = require("fs");
-var sqlite = require("sqlite3");
-//var db = require("/.db");
+
 
 server.connection({ port: 8000 });
 
-var db = new sqlite.Database("auth.db", function() {
-  //table has two columns - USERNAME & SESSION
-  db.run("CREATE TABLE IF NOT EXISTS auth (username, session)",
-    function() {
-      console.log("Starting server.");
-      server.start();
-    });
-});
-
-
-
-//server.start();
-
 server.views({
-  path: "templates",
   engines: {
-  	html: require("handlebars")
+    html: require("handlebars") //whenever ends in html, it will use handlebars
   },
-  layoutPath: "layouts",
-  layout: "default",
-  partialsPath: "templates/partials",
+  path: "./views",
   isCached: false
 });
 
-server.route({
-  method: "GET",
-  path: "/",
-  handler: function(req, reply) {
-    reply.view("index", {
-    	title: "Home"
-    });
-  }
-});
+var Blogpost = require("./models/blogpost"); //capitalize; importing constructor
 
-server.route({
-	method: "GET",
-	path: "/example",
-	handler: function (req, reply){
-		fs.readFile("example.json",
-		"utf8", function(err, data) {
-		reply.view("example", {
-			title: "Example",
-			example: JSON.parse(data)
-		});	
-	});
-  }
-});
+var sql = require("./db"); //sql is facade
+sql.init(function() {
+  console.log("The database is ready."); //server will not start until table exists
+  var blogpost = new Blogpost({
+    task: "Start server"
+  });
+  blogpost.create(function(err) {
+    if(err) {
+      console.error(err);
+    }
+    sql.connection.all("INSERT INTO blogpost(id, title, date, content, author, category, tags, images, meta) VALUES(1, 'Hello','Today', 'Hello world', 'Me', 'Basketball', 'Lalala', 'none', 'LeBron');", function(err, results) {
+      console.log(err, results)
+    });
+    sql.connection.all("SELECT * FROM blogpost", function(err, results) {
+      console.log(err, results)
+    });
+
+  });
+  server.start(); //server won't start until database is ready.
+}); //anything that happens after the database is ready.
+
