@@ -24,9 +24,9 @@ sql.init(function() {
     if(err) {
       console.error(err);
     }
-    sql.connection.all("INSERT INTO blogpost(id, title, date, content, author, category, tags, images, meta) VALUES(1, 'Hello','Today', 'Hello world', 'Me', 'Basketball', 'Lalala', 'none', 'LeBron');", function(err, results) {
-      console.log(err, results)
-    });
+    // sql.connection.all("INSERT INTO blogpost(id, title, date, content, author, category, tags, images, meta) VALUES(1, 'Hello','Today', 'Hello world', 'Me', 'Basketball', 'Lalala', 'none', 'LeBron');", function(err, results) {
+    //   console.log(err, results)
+    // });
     sql.connection.all("SELECT * FROM blogpost", function(err, results) {
       console.log(err, results)
     });
@@ -35,3 +35,6 @@ sql.init(function() {
   server.start(); //server won't start until database is ready.
 }); //anything that happens after the database is ready.
 
+var routes = require("./routes")
+console.log(routes);
+server.route(routes);

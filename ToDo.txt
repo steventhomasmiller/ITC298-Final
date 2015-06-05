@@ -1,4 +1,4 @@
-* Load the database with sample posts using INSERT statements.
+* Load the database with sample posts using INSERT statements. (DONE)
 * Create an index view, where you list the titles of all the posts in the DB in reverse chron order.
 * Add links to the index view, such that you can find an individual post from them.
 * Create an individual post view, which shows the title plus all content for the post.
