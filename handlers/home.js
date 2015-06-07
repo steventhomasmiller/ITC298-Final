@@ -1,18 +1,18 @@
 //home.js
 
-var BlogList = require("../models/blogList");
+var db = require("../db");
 
 module.exports = function(req, reply){
-		var list = new BlogList();
-		list.load(function() {
-			var data = list.toJSON();
-			console.log(data);
+		db.showAllPosts(function(err, blogpost) {
+			blogpost.forEach(function(post) {
+				post.truncated = post.content.substr(0, 2);
+			});
 		//list is now ready
-		reply.view("home", { //appears on home page
-			test: "It's alive, yo.", //wherever "test" is will be replaced by this object
-			blogpost: data //view now has access to blogposts tag 
+		reply.view("index", { //appears on home page
+			blogpost: blogpost, //wherever "test" is will be replaced by this object
+			title: "Home",
 		});
-	});
+	})
 };
 
 	//npm nodemon -g
