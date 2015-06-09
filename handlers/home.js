@@ -4,8 +4,8 @@ var db = require("../db");
 
 module.exports = function(req, reply){
 		db.showAllPosts(function(err, blogpost) {
-			blogpost.forEach(function(post) {
-				post.truncated = post.content.substr(0, 2);
+			blogpost.forEach(function(blogpost) {
+				blogpost.truncated = blogpost.content.substr(0, 2);
 			});
 		//list is now ready
 		reply.view("index", { //appears on home page

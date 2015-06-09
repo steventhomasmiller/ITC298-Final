@@ -1,15 +1,15 @@
-var Post = require("../models/blogpost");
+var blogPost = require("../models/blogpost");
 
 module.exports = function(req, reply) {
 	var id = req.params.id;
-	var model = new Post({
+	var model = new blogPost({
 		id: id
 	});
 
 	if (id == "new"){
-		return reply.view("post", {
+		return reply.view("blogpost", {
 			title: "New Blog Post",
-			post: model.toJSON()
+			blogpost: model.toJSON()
 		});
 	}
 	model.set("id", id);
@@ -20,9 +20,9 @@ module.exports = function(req, reply) {
 		} else {
 			data = model.toJSON();
 		}
-		reply.view("post", {
+		reply.view("blogpost", {
 			title: data.name,
-			post: data
+			blogpost: data
 		});
 	});
 };

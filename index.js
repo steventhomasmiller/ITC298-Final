@@ -22,9 +22,9 @@ server.views({
 
 //var Blogpost = require("./models/blogpost"); //capitalize; importing constructor
 
-var sql = require("./db"); //sql is facade
+var db = require("./db"); //sql is facade
 
-sql.init(function(err) {
+db.init(function(err) {
   if (err) {
     return console.error("I'm sorry, but there is a database error.", err);
   }
@@ -34,5 +34,4 @@ sql.init(function(err) {
   });
 }); //anything that happens after the database is ready.
 
-var routes = require("./routes")
-server.route(routes);
+server.route(require("./routes"));

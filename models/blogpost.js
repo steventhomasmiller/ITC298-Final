@@ -3,44 +3,59 @@
 
 var Backbone = require("backbone");
 var sql = require("../db"); //.. is for the parent directory
+var moment = require ("moment");
 
-var INSERT = "INSERT INTO blogpost(id, title, date, content, author, category, tags, images, meta) VALUES($id, $title, $date, $content, $author, $category, $tags, $images, $meta);";
-
+var LOAD = "SELECT * FROM blogpost where slug = $slug;";
+var SAVE_New = "INSERT INTO blogpost(id, title, slug, created_at, formatted, content, author, category, tags, meta) VALUES($id, $title, $slug, datetime('now') $formatted, $content, $author, $category, $tags, $meta);";
+var UPDATE = "UPDATE blogpost SET title = $title, content = $content where slug = $slug;";
+var LAST = "SELECT last_insert_rowid() AS rowid FROM blogpost;";
 
 //extend function create models
 
-var Blogpost = Backbone.Model.extend({
+module.exports = Backbone.Model.extend({
 	//custom model -- how it's different
 	//make properties same as columns in database
 	defaults: {
-		id: "",
+		id: "new",
 		title: "New Blog Post",
-		date: "Insert Date",
 		content: "Insert Content",
 		author: "Insert Author Name",
 		category: "Insert Category",
 		tags: "Insert Tags",
-		images: "Insert Image",
 		meta: "Insert Meta Data"
 	},
-	create: function(callback) {
-		callback = callback || function() {};
-		//get its own data
-		var data = this.toJSON(); //objects created from this function
-		//run an INSERT on the database
-		var q = "INSERT INTO blogpost(id, title, date, content, author, category, tags, images, meta) VALUES($id, $title, $date, $content, $author, $category, $tags, $images, $meta);"; //mustache tags, but for sql
-		//pass in its data
-		sql.connection.run(q, {
-			$id: data.id,
-			$title: data.title,
-			$date: data.date,
-			$content: data.content,
-			$author: data.author,
-			$category: data.category,
-			$tags: data.tags,
-			$images: data.images,
-			$meta: data.meta
-		}, callback);
+	load: function(done) {
+		var self = this;
+		var query = db.connection.prepare(LOAD);
+		var data = this.toJSON();
+		query.get({
+			$slug: data.slug
+		}, function(err, loaded) {
+			self.set(loaded);
+			done(err);
+		});
+	},
+save: function(done){
+	var self = this;
+	var id = this.get("id");
+	var q = id =="new"? SAVE_NEW : UPDATE;
+	var query = db.connection.prepare(q);
+	var data = this.toJSON();
+	var slug = this.get("title").toLowerCase();
+	var space = /\s/g;
+	slug = slug.replace(space, "-");
+
+	query.run({
+		$id: id == "new" ? undefinend : data.id,
+		$title: data.title,
+		$slug: slug,
+		$formatted: moment().format("dddd MMMM do, YYYY"),
+		$content: data.content,
+		$author: data.author,
+		$category: data.category,
+		$tags: data.tags,
+		$meta: data.meta
+	}, done);
 		//when done, call the callback
 	}
 });
@@ -52,4 +67,4 @@ var Blogpost = Backbone.Model.extend({
 // console.log(reminder.toJSON());
 
 
-module.exports = Blogpost; //any module can require this function 
+//module.exports = Blogpost; //any module can require this function 

@@ -7,19 +7,31 @@ module.exports = [
 	}, 
 	{
 		method: "GET",
-		path: "/posts",
-		handler: require("./handlers/posts")
+		path: "/blogpost",
+		handler: require("./handlers/home")
 	}, 
 	{
 		method: "GET",
-		path: "/posts/{title}",
-		handler: require("./handlers/getPost")
+		path: "/blogpost/{slug}/edit",
+		handler: require("./handlers/editPost")
 	},
+	// {
+	// 	method: "POST",
+	// 	path: "/blogpost/{slug}",
+	// 	handler: require("./handlers/viewPost")
+	// }, 
 	{
 		method: "POST",
-		path: "/posts/{id}",
-		handler: require("./handlers/setPost")
-	}, {
+		path: "/blogpost/{slug}",
+		handler: require("./handlers/savePost")
+	},
+	// {
+	// 	method: "GET",
+	// 	path: "blogpost/new",
+	// 	handler: require("./handlers/addPost")
+	// },
+
+	{
 		method: "GET",
 		path: "/assets/{param*}",
 		handler: {

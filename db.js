@@ -1,12 +1,13 @@
 //database.js
 
 var sqlite = require("sqlite3");
+var db;
 var async = require("async");
 
 var facade = {
 	connection: null,
 	init: function(ready) {
-		var db = new sqlite.Database("blogpost.db", function(err) {
+		db = new sqlite.Database("site.db", function(err) {
 			if (err) {
 				console.error("Something is wrong with the database.");
 				process.exit(1);
