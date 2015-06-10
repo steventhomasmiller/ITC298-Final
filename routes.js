@@ -12,24 +12,24 @@ module.exports = [
 	}, 
 	{
 		method: "GET",
-		path: "/blogpost/{slug}/edit",
+		path: "/blogpost/edit",
 		handler: require("./handlers/editPost")
 	},
-	// {
-	// 	method: "POST",
-	// 	path: "/blogpost/{slug}",
-	// 	handler: require("./handlers/viewPost")
-	// }, 
+	{
+		method: "GET",
+		path: "/blogpost/{slug}",
+		handler: require("./handlers/viewPost")
+	}, 
 	{
 		method: "POST",
 		path: "/blogpost/{slug}",
 		handler: require("./handlers/savePost")
 	},
-	// {
-	// 	method: "GET",
-	// 	path: "blogpost/new",
-	// 	handler: require("./handlers/addPost")
-	// },
+	{
+		method: "GET",
+		path: "/blogpost/new",
+		handler: require("./handlers/addPost")
+	},
 
 	{
 		method: "GET",

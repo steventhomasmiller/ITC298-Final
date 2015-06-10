@@ -1,7 +1,7 @@
-var blogPost = require("../models/blogpost");
+var Post = require("../models/blogpost");
 
 module.exports = function(req, reply) {
-	var blogpost = new blogpost({
+	var blogpost = new Post({
 		slug: req.params.slug
 	});
 	blogpost.load(function() {

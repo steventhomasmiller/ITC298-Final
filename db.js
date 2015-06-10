@@ -7,7 +7,7 @@ var async = require("async");
 var facade = {
 	connection: null,
 	init: function(ready) {
-		db = new sqlite.Database("site.db", function(err) {
+		db = new sqlite.Database("blogpost.db", function(err) {
 			if (err) {
 				console.error("Something is wrong with the database.");
 				process.exit(1);
@@ -17,7 +17,7 @@ var facade = {
 		
 		async.parallel([
 			function(c) {
-				db.run("CREATE TABLE IF NOT EXISTS blogpost (id, title, date, content, author, category, tags, images, meta);", c);
+				db.run("CREATE TABLE IF NOT EXISTS blogpost (id, title, slug, created_at, formatted, content, author, category, tags, meta);", c);
 			},
 				function(c) {
 					db.run("CREATE TABLE IF NOT EXISTS user (firstName, lastName);",c);
@@ -29,7 +29,7 @@ var facade = {
 		});
 	},
 	showAllPosts: function(c) {
-		db.all("SELECT *, rowid from blogpost ORDER BY create_at DESC;", c);
+		db.all("SELECT *, rowid from blogpost ORDER BY created_at DESC;", c);
 	}
 };
 

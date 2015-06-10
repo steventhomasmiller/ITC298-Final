@@ -4,6 +4,7 @@ var db = require("../db");
 
 module.exports = function(req, reply){
 		db.showAllPosts(function(err, blogpost) {
+			console.log(err, blogpost);
 			blogpost.forEach(function(blogpost) {
 				blogpost.truncated = blogpost.content.substr(0, 2);
 			});

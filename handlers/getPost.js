@@ -1,8 +1,8 @@
-var blogPost = require("../models/blogpost");
+var Post = require("../models/blogpost");
 
 module.exports = function(req, reply) {
 	var id = req.params.id;
-	var model = new blogPost({
+	var model = new Post({
 		id: id
 	});
 

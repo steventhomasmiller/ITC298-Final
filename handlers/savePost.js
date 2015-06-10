@@ -1,4 +1,4 @@
-var blogPost = require("../models/blogpost");
+var Post = require("../models/blogpost");
 
 module.exports = function(req, reply) {
 	var payload = req.payload;
