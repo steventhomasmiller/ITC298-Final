@@ -1,10 +1,11 @@
 var Post = require("../models/blogpost");
 
-module.exports = function (req, reply){
+module.exports = function(req, reply){
 	var blogpost = new Post({
-		slug: req.parama.slug
+		slug: req.params.slug
 	});
-	post.load(function(){
+	blogpost.load(function(){
+		//console.log(blogpost.toJSON());
 		reply.view("blogpost", {
 			title: "Edit Post",
 			blogpost: blogpost.toJSON()

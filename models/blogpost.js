@@ -5,9 +5,9 @@ var Backbone = require("backbone");
 var sql = require("../db"); //.. is for the parent directory
 var moment = require ("moment");
 
-var LOAD = "SELECT * FROM blogpost where slug = $slug;";
-var SAVE_NEW = "INSERT INTO blogpost(id, title, slug, created_at, formatted, content, author, category, tags, meta) VALUES($id, $title, $slug, datetime('now'), $formatted, $content, $author, $category, $tags, $meta);";
-var UPDATE = "UPDATE blogpost SET title = $title, content = $content where slug = $slug;";
+var LOAD = "SELECT *, rowid AS id FROM blogpost WHERE slug = $slug;";
+var SAVE_NEW = "INSERT INTO blogpost(title, slug, created_at, formatted, content, author, category, tags, meta) VALUES($title, $slug, datetime('now'), $formatted, $content, $author, $category, $tags, $meta);";
+var UPDATE = "UPDATE blogpost SET title = $title, content = $content WHERE slug = $slug;";
 var LAST = "SELECT last_insert_rowid() AS rowid FROM blogpost;";
 
 //extend function create models
@@ -31,6 +31,7 @@ module.exports = Backbone.Model.extend({
 		query.get({
 			$slug: data.slug
 		}, function(err, loaded) {
+			console.log(loaded);
 			self.set(loaded);
 			done(err);
 		});
@@ -38,7 +39,16 @@ module.exports = Backbone.Model.extend({
 save: function(done){
 	var self = this;
 	var id = this.get("id");
-	var q = id =="new"? SAVE_NEW : UPDATE;
+	// var q = id =="new" ? SAVE_NEW : UPDATE;
+	// var q = id;
+	// if (id == "new")
+	// {
+	// 	SAVE_NEW;
+	// } else
+	// {
+	// 	UPDATE;
+	// }
+	var q = id =="new" ? SAVE_NEW : UPDATE;
 	var query = sql.connection.prepare(q);
 	var data = this.toJSON();
 	var slug = this.get("title").toLowerCase();

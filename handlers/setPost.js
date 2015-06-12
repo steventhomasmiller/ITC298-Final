@@ -9,6 +9,6 @@ module.exports = function(req, reply) {
 		}
 		var response = reply ("This is saved.");
 		response.statusCode = 302;
-		response.headers.Location = "/blogpost";
+		response.headers.Location = "/blogpost/";
 	});
 };

@@ -12,7 +12,7 @@ module.exports = [
 	}, 
 	{
 		method: "GET",
-		path: "/blogpost/edit",
+		path: "/blogpost/{slug}/edit",
 		handler: require("./handlers/editPost")
 	},
 	{
