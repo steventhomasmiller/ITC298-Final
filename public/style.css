@@ -1,7 +1,48 @@
 @charset "utf-8";
 
+* {
+	box-sizing: border-box;
+}
+
 body {
 	background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/confectionary.png");
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+#nav {
+	width:100%;
+	display: center;
+	padding-top:1.25rem; /*20px /16px */
+	padding-bottom:1.25rem; /*20px /16px */
+	height:1.4em;
+	font-family: Helvetica,Arial,sans-serif;
+	clear:both;
+    margin-bottom:3.5em;
+}
+
+#nav li {
+	list-style-type: none;
+	float:left;
+	line-height:1.4em;
+	width:33%;  
+	text-align:center;
+}
+
+#nav ul{
+	padding-left:20px;
+	padding-left:1.25rem; 
+	padding:0;
+}
+
+#nav a {
+	letter-spacing:5px;
 }
 
 #container {
@@ -21,6 +62,7 @@ body {
 	text-align: center;
 	width: auto;
   	font-size: 2.3em;
+  	-webkit-text-stroke: 1px black; /* style courtesy of CSS Tricks */
   	/*box-shadow: 10px 10px 5px #888888;*/
 }
 
@@ -32,19 +74,18 @@ body {
 #content {
 	width:90%;
 	font-size:1.2em;
-	padding-left:25px;
 }
 
 .most-recent{
 	font-style: italic;
 }
 
-.preview {
-	margin: 30px;
+.blog-list {
+	border: 2px dotted #FFF;
 }
 
 .post {
-	background-color: lightgrey;
+	/* background-color: lightgrey; not necessary */
 	padding: 10px 11px 15px 19px;
 	opacity: 0.88;
 }
@@ -63,12 +104,17 @@ body {
 	padding: 30px;
 }
 
-.single-view{
-	
+.single-view {
+	margin-bottom: 30px;
 }
 
-.single-view.content{
+.single-view.content {
 
+}
+
+textarea {
+	width: 66%;
+	height: 116px;
 }
 
 .footer {

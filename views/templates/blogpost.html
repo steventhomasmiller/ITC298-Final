@@ -1,26 +1,33 @@
-<h1>Add or Change Blogpost</h1>
+<h2>Add or Edit Blogpost</h2>
 
 <form action="/blogpost/{{blogpost.id}}" method="POST" class="edit-post">
 	<input type="hidden" name="id" value="{{blogpost.id}}">
 
-	<label>Title</label>
+	<p class="form-title"><label>Title</label>
 	<input name="title" value="{{blogpost.title}}">
+	</p>
 
-	<label>Content</label>
-	<input name="content" value="{{blogpost.content}}">
+	<p class="form-content"><label>Content</label>
+	<textarea name="content" value="{{blogpost.content}}">
+	</textarea>
+	</p>
 
 
-	<label>Author</label>
+	<p class="form-author"><label>Author</label>
 	<input name="author" value="{{blogpost.author}}">
+	</p>
 
-	<label>Category</label>
+	<p class="form-category"><label>Category</label>
 	<input name="category" value="{{blogpost.category}}">
+	</p>
 
-	<label>Tags</label>
+	<p class="form-tags"><label>Tags</label>
 	<input name="tags" value="{{blogpost.tags}}">
+	</p>
 
-	<label>Meta</label>
+	<p class="form-meta"><label>Meta</label>
 	<input name="meta" value="{{blogpost.meta}}"> 
+	</p>
 
 	<input type="submit">
 </form>
