@@ -1,17 +1,16 @@
-<h1>The Posts</h1>
+<h2><span class="most-recent">The</span> Most Recent</h2>
 
-<a href="/blogpost/new">Add new post</a>
-
-<ul>
+<div class="preview">
+	<div class="post">
 	{{#blogpost}}
-	<li>
-		<a href="/blogpost/{{slug}}/">{{title}}</a> | {{formatted}}
-	
-	</li>
+		<h2 class="post-title"><a href="/blogpost/{{slug}}/">{{title}}</a></h2> 
+		<p class="byline">By {{author}}</p> 
+		<p class="post-info">Published on {{formatted}} | Posted in: {{category}} | Tags: {{tags}}
+		</p>
 	{{/blogpost}}
-</ul>
+	</div>
+</div>
 
-{{#blogpost}}
-<h1><a href="/blogpost/{{slug}}/">{{title}}</a></h1>
-{{/blogpost}}
-
+<div class="add-new">
+	<a href="/blogpost/new">Add new post</a>
+</div>

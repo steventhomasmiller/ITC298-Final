@@ -6,8 +6,8 @@ var sql = require("../db"); //.. is for the parent directory
 var moment = require ("moment");
 
 var LOAD = "SELECT *, rowid AS id FROM blogpost WHERE slug = $slug;";
-var SAVE_NEW = "INSERT INTO blogpost(title, slug, created_at, formatted, content, author, category, tags, meta) VALUES($title, $slug, datetime('now'), $formatted, $content, $author, $category, $tags, $meta);";
-var UPDATE = "UPDATE blogpost SET title = $title, content = $content WHERE slug = $slug;";
+var SAVE_NEW = "INSERT INTO blogpost(title, slug, content, created_at, formatted, author, category, tags, meta) VALUES($title, $slug, $content, datetime('now'), $formatted, $author, $category, $tags, $meta);";
+var UPDATE = "UPDATE blogpost SET title = $title, content = $content, created_at = datetime('now'), formatted = $formatted, author = $author, category = $category, tags = $tags, meta = $meta, slug = $slug;";
 var LAST = "SELECT last_insert_rowid() AS rowid FROM blogpost;";
 
 //extend function create models

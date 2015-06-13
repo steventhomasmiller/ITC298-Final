@@ -1,12 +1,17 @@
-<a href="./edit">Edit</a>
+<div class="single-view">
 
-{{#with blogpost}}
+	{{#with blogpost}}
 
-<h2>{{title}}</h2>
+	<h2>{{title}}</h2>
 
-Content: {{content}}
+	<p class="single-view-content">{{content}}</p>
 
-Author:{{author}}
+	<p class="single-view-info">Published: {{author}} | Date:{{formatted}} | Posted in: {{category}} |
+	Tags: {{tags}} | Meta: {{meta}} </p>	
 
-Date:{{formatted}}
-{{/with}}
+
+	{{/with}}
+
+	<a href="./edit">Edit This Post</a>
+
+</div>
