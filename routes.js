@@ -35,7 +35,16 @@ module.exports = [
 	// 	path: "/about",
 	// 	handler: require("./handlers/about")
 	// },
-
+	{
+		method: "POST",
+		path: "/login",
+		handler: require("./handlers/postLogin")
+	},
+	{
+		method: "GET",
+		path: "/login",
+		handler: require("./handlers/getLogin")
+	},
 	{
 		method: "GET",
 		path: "/assets/{param*}",

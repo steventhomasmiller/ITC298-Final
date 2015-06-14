@@ -4,6 +4,11 @@ var sqlite = require("sqlite3");
 var db;
 var async = require("async");
 
+var users = {
+	steve: "sh4b4ng!",
+	guest: "p@ssw0rd"
+};
+
 var facade = {
 	connection: null,
 	init: function(ready) {
@@ -15,14 +20,24 @@ var facade = {
 		//creating db
 		facade.connection = db; // once connection is made, they can use this
 		
-		async.parallel([
+		async.series([
 			function(c) {
 				db.run("CREATE TABLE IF NOT EXISTS blogpost (id, title, slug, created_at, formatted, content, author, category, tags, meta);", c);
 			},
 				function(c) {
-					db.run("CREATE TABLE IF NOT EXISTS user (firstName, lastName);",c);
+					db.run("CREATE TABLE IF NOT EXISTS users (username, session, password);",{
+						$username: "Steve",
+						$password: "h3ll0"
+					}, c);
+				},
+				function(c) {
+					db.run("INSERT INTO users (username, password) VALUES ($username, $password);", {
+						$username: "guest",
+						$password: "guest"
+					}, c);
 				}
 			], function(err) {
+				db.all("SELECT * FROM users", console.log.bind(console));
 				console.log(err);
 				if (ready) ready(err)
 			});

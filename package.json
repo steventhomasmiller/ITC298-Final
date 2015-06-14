@@ -12,6 +12,7 @@
     "autoprefixer": "^5.2.0",
     "handlebars": "^3.0.3",
     "hapi": "^8.5.1",
+    "md5": "^1.0.0",
     "sqlite3": "^3.0.8"
   },
   "devDependencies": {
