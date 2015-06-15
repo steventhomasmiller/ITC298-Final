@@ -30,11 +30,11 @@ module.exports = [
 		path: "/blogpost/new",
 		handler: require("./handlers/addPost")
 	},
-	// {
-	// 	method: "GET",
-	// 	path: "/about",
-	// 	handler: require("./handlers/about")
-	// },
+	{
+		method: "GET",
+		path: "/about",
+		handler: require("./handlers/about")
+	},
 	{
 		method: "POST",
 		path: "/login",
