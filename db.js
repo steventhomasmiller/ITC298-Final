@@ -22,13 +22,10 @@ var facade = {
 		
 		async.series([
 			function(c) {
-				db.run("CREATE TABLE IF NOT EXISTS blogpost (id, title, slug, created_at, formatted, content, author, category, tags, meta);", c);
+				db.run("CREATE TABLE IF NOT EXISTS blogpost (id INTEGER PRIMARY KEY, title, slug, created_at, formatted, content, author, category, tags, meta);", c);
 			},
 				function(c) {
-					db.run("CREATE TABLE IF NOT EXISTS users (username, session, password);",{
-						$username: "Steve",
-						$password: "h3ll0"
-					}, c);
+					db.run("CREATE TABLE IF NOT EXISTS users (username, session, password);", c);
 				},
 				function(c) {
 					db.run("INSERT INTO users (username, password) VALUES ($username, $password);", {
@@ -49,3 +46,4 @@ var facade = {
 };
 
 module.exports = facade; //what we're exporting, but not funcitonally anything. Just a grab bag.
+
