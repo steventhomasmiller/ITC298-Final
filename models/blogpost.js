@@ -7,7 +7,7 @@ var moment = require ("moment");
 
 var LOAD = "SELECT *, rowid AS id FROM blogpost WHERE slug = $slug;";
 var SAVE_NEW = "INSERT INTO blogpost(title, slug, content, created_at, formatted, author, category, tags, meta) VALUES($title, $slug, $content, datetime('now'), $formatted, $author, $category, $tags, $meta);";
-var UPDATE = "UPDATE blogpost SET title = $title, content = $content, created_at = datetime('now'), formatted = $formatted, author = $author, category = $category, tags = $tags, meta = $meta, slug = $slug;";
+var UPDATE = "UPDATE blogpost SET title = $title, content = $content, created_at = datetime('now'), formatted = $formatted, author = $author, category = $category, tags = $tags, meta = $meta, slug = $slug WHERE id = $id";
 var LAST = "SELECT last_insert_rowid() AS rowid FROM blogpost;";
 
 //extend function create models
@@ -38,7 +38,7 @@ module.exports = Backbone.Model.extend({
 	},
 save: function(done){
 	var self = this;
-	var id = this.get("id");
+	var id = this.id;
 	// var q = id =="new" ? SAVE_NEW : UPDATE;
 	// var q = id;
 	// if (id == "new")
@@ -59,7 +59,7 @@ save: function(done){
 		$id: id == "new" ? undefined : data.id,
 		$title: data.title,
 		$slug: slug,
-		$formatted: moment().format("dddd MMMM do, YYYY"),
+		$formatted: moment().format("dddd MMMM Do, YYYY"),
 		$content: data.content,
 		$author: data.author,
 		$category: data.category,
