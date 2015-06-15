@@ -27,7 +27,7 @@ module.exports = function (req, reply) {
 			});
 
 		} else {
-			reply.redirect("/login");
+			reply.redirect("/");
 		}
 	});
 };

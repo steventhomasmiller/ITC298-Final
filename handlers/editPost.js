@@ -5,7 +5,7 @@ module.exports = function(req, reply){
 		slug: req.params.slug
 	});
 	blogpost.load(function(){
-		//console.log(blogpost.toJSON());
+		console.log(blogpost.toJSON());
 		reply.view("blogpost", {
 			title: "Edit Post",
 			blogpost: blogpost.toJSON()
