@@ -2,32 +2,27 @@
 
 var crypto = require("crypto");
 var db = require("../db");
-
+ 
 module.exports = function (req, reply) {
-	var md5 = crypto.createHash("md5");
-
-	db.connection.get("SELECT * FROM users WHERE username = $username", {
-		$username: req.payload.name
-	}, function(err, expected) {
-		
-		console.log(req.payload, expected, err);
-
-		if (expected && req.payload.password == expected.password) {
-			var response = reply("Signed in.");
-			var id = req.payload.name + Date.now();
-			md5.update(id);
-			id = md5.digest("hex");
-			response.state("user", req.payload.name);
-			response.state("session", id);
-			console.log(req.payload.name, id);
-
-			db.connection.run("UPDATE users session = $session WHERE username = $user",{
-				$user: req.payload.name,
-				$session: id
-			});
-
-		} else {
-			reply.redirect("/");
-		}
-	});
+    var name = req.payload.username;
+    var md5 = crypto.createHash('md5');
+    db.connection.get('SELECT * FROM users WHERE username = $username', {
+        $username: name
+    }, function(err, expected) {
+        console.log('error, ', err);
+        if(expected && req.payload.password === expected.password) {
+            var id = req.payload.username + Date.now();
+            md5.update(id);
+            id = md5.digest('hex');
+            reply.state('user', name);
+            reply.state('session', id);
+            db.connection.run("UPDATE users SET session = $session WHERE username = $user", {
+                $user: name,
+                $session: id
+            });
+            reply.redirect('/blogpost/new');
+        } else {
+            reply.redirect('login');
+        }
+    });
 };
