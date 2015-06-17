@@ -35,7 +35,7 @@ a:visited{
 	list-style-type: none;
 	float:left;
 	line-height:1.4em;
-	width:33%;  
+	width:45%;  
 	text-align:center;
 }
 
@@ -119,6 +119,11 @@ a:visited{
 textarea {
 	width: 66%;
 	height: 116px;
+}
+
+#content-label{
+	float: left;
+	margin-right: 8px;
 }
 
 .footer {

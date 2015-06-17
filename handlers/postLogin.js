@@ -14,13 +14,14 @@ module.exports = function (req, reply) {
             var id = req.payload.username + Date.now();
             md5.update(id);
             id = md5.digest('hex');
-            reply.state('user', name);
+            reply.state('user', name); //setting cookies
             reply.state('session', id);
             db.connection.run("UPDATE users SET session = $session WHERE username = $user", {
                 $user: name,
                 $session: id
             });
-            reply.redirect('/blogpost/new');
+            reply.redirect('/');
+            // reply.redirect('/blogpost/edit');
         } else {
             reply.redirect('login');
         }

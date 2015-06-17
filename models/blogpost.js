@@ -18,7 +18,7 @@ module.exports = Backbone.Model.extend({
 	defaults: {
 		id: "new",
 		title: "New Blog Post",
-		content: "Insert Content",
+		content: "",
 		author: "Insert Author Name",
 		category: "Insert Category",
 		tags: "Insert Tags",

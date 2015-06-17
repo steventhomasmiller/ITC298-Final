@@ -1,3 +1,10 @@
 module.exports = function(req, reply){
-	reply.view("about");
+
+	if (!req.state.user){
+			return reply.redirect("/login");
+		} 
+	reply.view("about" , {
+		title: "About"
+	});
+
 };
