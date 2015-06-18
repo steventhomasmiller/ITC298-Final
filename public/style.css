@@ -4,16 +4,18 @@
 	box-sizing: border-box;
 }
 
+
 body {
 	background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/confectionary.png");
+	font-family: "pt-serif",sans-serif;
 }
 
 a {
 	text-decoration: none;
 }
 
-a:hover{
-	text-decoration: underline;
+a:link {
+	color: #5477af;
 }
 
 a:visited{
@@ -47,6 +49,10 @@ a:visited{
 
 #nav a {
 	letter-spacing:5px;
+}
+
+#nav a:hover {
+	color: #CE3728;
 }
 
 #container {
@@ -94,6 +100,14 @@ a:visited{
 	opacity: 0.88;
 }
 
+.post-title a {
+	color: #5477af;
+}
+
+.post-title a:hover {
+	color: #CE3728;
+}
+
 .byline{
 	text-transform: uppercase;
   	letter-spacing: .08333em;
@@ -102,10 +116,19 @@ a:visited{
 .post-info{
 	border-bottom: 2px dotted #bbbbb9;
 	margin-bottom: 10px;
+	padding-bottom: inherit;
 }
 
 .add-new {
-	padding: 30px;
+	padding: 20px;
+}
+
+.add-new a {
+	color: #5477af;
+}
+
+.add-new a:hover{
+	color: #CE3728;
 }
 
 .single-view {
@@ -121,11 +144,20 @@ textarea {
 	height: 116px;
 }
 
+.edit-post{
+	margin-bottom: 30px;
+}
+
+.login-form{
+	margin-bottom: 30px;
+}
+
 #content-label{
 	float: left;
 	margin-right: 8px;
 }
 
-.footer {
-	margin-top: 30px;
+#footer-container {
+	padding-bottom: 30px;
 }
+
