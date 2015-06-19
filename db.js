@@ -4,11 +4,6 @@ var sqlite = require("sqlite3");
 var db;
 var async = require("async");
 
-var users = {
-	steve: "sh4b4ng!",
-	guest: "p@ssw0rd"
-};
-
 var facade = {
 	connection: null,
 	init: function(ready) {
@@ -32,7 +27,15 @@ var facade = {
 						$username: "guest",
 						$password: "guest"
 					}, c);
-				}
+				}, 
+
+                function(c) {
+                    db.run("INSERT INTO users (username, password) VALUES ($username, $password);", {
+                        $username: "steve",
+                        $password: "sh4b4ng!"
+                    }, c);
+                } 
+
 			], function(err) {
 				db.all("SELECT * FROM users", console.log.bind(console));
 				console.log(err);
