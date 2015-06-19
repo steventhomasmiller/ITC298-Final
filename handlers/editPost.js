@@ -8,7 +8,7 @@ module.exports = function(req, reply){
 	if (!req.state.user){
 		return reply.redirect("/login");
 	}
-	
+
 	blogpost.load(function(){
 		console.log(blogpost.toJSON());
 		reply.view("blogpost", {
@@ -17,3 +17,4 @@ module.exports = function(req, reply){
 		})
 	})
 }
+

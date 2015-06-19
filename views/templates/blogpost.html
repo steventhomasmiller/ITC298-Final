@@ -1,4 +1,4 @@
-<h2>Add/Edit Blogpost</h2>
+<h2>The Blogpost Form Page</h2>
 
 <form action="/blogpost/{{blogpost.id}}" method="POST" class="edit-post">
 	<input type="hidden" name="id" value="{{blogpost.id}}">
@@ -7,10 +7,8 @@
 	<input name="title" value="{{blogpost.title}}">
 	</p>
 
-	<p class="form-content"><label id="content-label">Content</label>
-	<textarea name="content">{{blogpost.content}}
-	</textarea>
-	</p> <!--supposedly a super-easy error to solve -->
+	<p class="form-content"><label id="content-label">Content</label><textarea name="content">{{blogpost.content}}</textarea>
+	</p> <!--nice-->
 
 
 	<p class="form-author"><label>Author</label>

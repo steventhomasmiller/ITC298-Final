@@ -18,7 +18,7 @@ module.exports = Backbone.Model.extend({
 	defaults: {
 		id: "new",
 		title: "New Blog Post",
-		content: "",
+		content: "Insert Content",
 		author: "Insert Author Name",
 		category: "Insert Category",
 		tags: "Insert Tags",
@@ -39,15 +39,6 @@ module.exports = Backbone.Model.extend({
 save: function(done){
 	var self = this;
 	var id = this.id;
-	// var q = id =="new" ? SAVE_NEW : UPDATE;
-	// var q = id;
-	// if (id == "new")
-	// {
-	// 	SAVE_NEW;
-	// } else
-	// {
-	// 	UPDATE;
-	// }
 	var q = id =="new" ? SAVE_NEW : UPDATE;
 	var query = sql.connection.prepare(q);
 	var data = this.toJSON();

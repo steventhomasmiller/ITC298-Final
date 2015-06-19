@@ -117,10 +117,13 @@ a:visited{
 	border-bottom: 2px dotted #bbbbb9;
 	margin-bottom: 10px;
 	padding-bottom: inherit;
+	line-height: 1.4em;
 }
 
 .add-new {
 	padding: 20px;
+	margin-top: -15px;
+	margin-bottom: 13px;
 }
 
 .add-new a {
@@ -135,17 +138,26 @@ a:visited{
 	margin-bottom: 30px;
 }
 
-.single-view.content {
-
+.single-view-info {
+	font-size: 16px;
 }
 
 textarea {
 	width: 66%;
 	height: 116px;
+	margin: 0;
 }
 
 .edit-post{
 	margin-bottom: 30px;
+}
+
+.edit-this-post a {
+	color: #5477af;
+}
+
+.edit-this-post a:hover{
+	color: #CE3728;
 }
 
 .login-form{
